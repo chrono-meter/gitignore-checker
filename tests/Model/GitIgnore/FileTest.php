@@ -554,5 +554,11 @@ EOF
 !/foo/*/bar_subfolder/
 EOF
             , '/foo/bar_folder/README', false);
+
+        $this->doTestSingleFileIsPathIgnored(
+            <<<EOF
+/foo/bar_subfolder/
+EOF
+            , '/foo/bar_folder/bar_subfolder/README', false);
     }
 }

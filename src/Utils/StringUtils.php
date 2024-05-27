@@ -164,6 +164,10 @@ class StringUtils
         $ruleTokens = self::explodeStringWithDirectorySeparatorAsDelimiter($rule);
         $pathTokens = StringUtils::explodeStringWithDirectorySeparatorAsDelimiter($path);
 
+        if (empty(array_intersect($ruleTokens, ['*', '**'])) && count($pathTokens) > count($ruleTokens) && '/' === substr($rule, 0, 1)) {
+            return false;
+        }
+
         foreach ($ruleTokens as $ruleToken) {
             $regex = self::buildRegexForRule($ruleToken);
 
